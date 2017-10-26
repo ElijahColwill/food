@@ -2,6 +2,8 @@ require './food'
 require './meal'
 require './day'
 require './month'
+require './activity'
+require './exersize'
 
 scrambled_eggs = Food.new("Scrambled Eggs", "1 egg", 100)
 bacon = Food.new("Bacon", "3 slices", 100)
@@ -83,3 +85,37 @@ puts day1_met_goal
 puts "---"
 puts "Weight change in a month:"
 puts month1.weight_change
+
+jogging = Activity.new("Jogging", 300, 0.5)
+yoga = Activity.new("Yoga", 240, 1.0/3)
+weightlifting = Activity.new("Weight Lifting", 266, 0.75)
+
+exersize1 = Exersize.new()
+exersize1.add_exersize(jogging)
+exersize1.add_exersize(yoga)
+exersize1.add_exersize(weightlifting)
+calorie_goal = exersize1.total_calories + 2000
+
+day2 = Day.new(calorie_goal)
+day2.add_meal(breakfast)
+day2.add_meal(lunch)
+day2.add_meal(dinner)
+day2.add_meal(snacks)
+
+month2 = Month.new(day2.calories, calorie_goal)
+
+puts "---"
+puts "With exersize, Big Dan's new calorie goal is #{calorie_goal}."
+puts "Meeting daily calorie goal with exersize?"
+day2_met_goal = day2.met_goal? 
+puts day2_met_goal
+puts "---"
+puts "Weight change in a month with exersize:"
+puts month2.weight_change
+
+
+
+
+
+
+
